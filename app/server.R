@@ -1,6 +1,6 @@
 packages.used=c("dplyr", "plotly", "shiny", "leaflet", "scales", 
                 "lattice", "htmltools", "maps", "data.table", 
-                "dtplyr", "mapproj", "randomForest", "ggplot2", "rpart")
+                "dtplyr", "mapproj", "randomForest", "ggplot2", "rpart", "zipcode", "geosphere")
 
 # check packages that need to be installed.
 packages.needed=setdiff(packages.used, 
