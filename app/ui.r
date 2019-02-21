@@ -1,42 +1,170 @@
+packages.used=c("shiny", "plotly", "shinydashboard", "leaflet")
+
+# check packages that need to be installed.
+packages.needed=setdiff(packages.used, 
+                        intersect(installed.packages()[,1], 
+                                  packages.used))
+# install additional packages
+if(length(packages.needed)>0){
+  install.packages(packages.needed, dependencies = TRUE)
+}
+
+
 library(shiny)
+library(plotly)
 library(leaflet)
+library(shinydashboard)
 
-# Define UI for application that draws a histogram
-shinyUI(fluidPage(
-  
-  # Application title
-  titlePanel("2009 Manhattan Housing Sales"),
-  
-  # Sidebar with a selector input for neighborhood
-  sidebarLayout(
-    sidebarPanel(
-      selectInput("nbhd", label = h5("Choose a Manhattan Neighborhood"), 
-                         choices = list("all neighborhoods"=0,
-                                        "Central Harlem"=1, 
-                                        "Chelsea and Clinton"=2,
-                                        "East Harlem"=3, 
-                                        "Gramercy Park and Murray Hill"=4,
-                                        "Greenwich Village and Soho"=5, 
-                                        "Lower Manhattan"=6,
-                                        "Lower East Side"=7, 
-                                        "Upper East Side"=8, 
-                                        "Upper West Side"=9,
-                                        "Inwood and Washington Heights"=10), 
-                         selected = 0)
-      #sliderInput("p.range", label=h3("Price Range (in thousands of dollars)"),
-      #            min = 0, max = 20000, value = c(200, 10000))
+dashboardPage(
+  dashboardHeader(title = "Hospital For You"),
+  skin = "blue",
+  dashboardSidebar(
+    width = 260,
+    sidebarMenu(
+      id = "tabs",
+      menuItem("Welcome", tabName = "Welcome1", icon = icon("book")),
+      menuItem(
+        "Introduction",
+        icon = icon("file-text-o"),
+        menuSubItem("Read Me", tabName = "ReadMe", icon = icon("angle-right")),
+        menuSubItem(
+          "Criterion Measurement",
+          tabName = "CM",
+          icon = icon("angle-right")
+        ),
+        menuSubItem(
+          "About Team",
+          tabName = "AboutTeam",
+          icon = icon("angle-right")
+        )
+      ),
+      menuItem(
+        "Summary Statistics",
+        tabName = "SummaryStat",
+        icon = icon("area-chart")
+      ),
+      menuItem(
+        "Hospital Recommendation",
+        tabName = "HospitalRecommend",
+        icon = icon("table")
+      )
     ),
-    # Show two panels
-    mainPanel(
-      #h4(textOutput("text")),
-      h3(code(textOutput("text1"))),
-      tabsetPanel(
-        # Panel 1 has three summary plots of sales. 
-        tabPanel("Sales summary", plotOutput("distPlot")), 
-        # Panel 2 has a map display of sales' distribution
-        tabPanel("Sales map", plotOutput("distPlot1"))),
-      leafletOutput("map", width = "80%", height = "400px")
+    
+    hr()
+    
+  ),
+  dashboardBody(
+    tabItems(
+      tabItem(tabName = "Welcome1",
+              mainPanel(
+                img(
+                  src = "logo.png",
+                  height = 800,
+                  width = 1000
+                )
+              )),
+      
+      tabItem(tabName = "SummaryStat",
+              fluidRow(
+                tabBox(
+                  width = 12,
+                  tabPanel(
+                    title = "Variable Importance",
+                    width = 12,
+                    plotlyOutput("VI", height = 700)
+                  ),
+                  tabPanel(title = "Number of Hospitals by State\n", plotlyOutput("NHS", height = 700)),
+                  tabPanel(
+                    title = "Hospital Quality by State\n",
+                    width = 12,
+                    plotlyOutput("HQS", height = 700)
+                  )
+                )
+              )),
+      
+      tabItem(tabName = "HospitalRecommend",
+              
+              fluidRow(
+                
+                  width = 12,
+                    column(width = 3,
+                      #select state
+                      selectInput("state", label = "State", selected = "Select", choices = append("Select",as.character(unique(hos$State)))),
+                      #select hospital type
+                      selectInput("type", label = "Type", selected = "Select", choices = c("Select","Acute Care Hospitals","Critical Access Hospitals","Childrens")),
+                      textInput("user_zip", label = "Zipcode", value = "10025", width = NULL, placeholder = "Please type your 5-digit zip code here"),
+                      radioButtons("dst", label = "Hospitals Within", choices = list("5 Miles"=5,"20 Miles"=20,"50 Miles"=50,"NA"=100000),selected = 100000,inline = T),
+                      radioButtons("money", label = "Cost", choices = list("$"=1,"$$"=2,"$$$"=3,"$$$$"=4,"NA"=0),selected = 0,inline = T),
+                      radioButtons("emg",label = "Emergency Services",choices = list("Yes" = 1,"No" = 2,"NA" = 0),selected = 0,inline = T),
+                      br(),
+                      submitButton("Submit", width = "70%")      
+                    ),
+                    column(width = 9,
+                           strong(h4('User Location:')),
+                           h4(textOutput("u_city_state")),
+                           br(),
+                      tabPanel('Search Results', dataTableOutput("tableinfo"), tags$style(type = "text/css", '#myTable tfoot {display:none;}'))
+                    )
+                ,
+                tabBox(
+                  width = 12,
+                  tabPanel(
+                    title = "Map",
+                    width = 12,
+                    solidHeader = T,
+                    leafletOutput("map")
+                  )
+                )
+              )),
+      
+      tabItem(
+        tabName = "ReadMe",
+        mainPanel(
+          h2(textOutput("read0")),
+          textOutput("read1"),
+          hr(),
+          h3(textOutput("read2")),
+          textOutput("read3"),
+          textOutput("read4"),
+          textOutput("read5"),
+          textOutput("read6"),
+          hr(),
+          h3(textOutput("read7")),
+          textOutput("read8"),
+          a("Here", href = "https://www.medicare.gov/hospitalcompare/search.html")
+        )
+      ),
+      tabItem(
+        tabName = "CM",
+        mainPanel(
+          h3(textOutput("read9")),
+          textOutput("read10"),
+          textOutput("read11"),
+          textOutput("read12"),
+          textOutput("read13"),
+          textOutput("read14"),
+          textOutput("read15"),
+          textOutput("read16"),
+          hr(),
+          textOutput("read17"),
+          a("Here", href = "https://www.medicare.gov/hospitalcompare/Data/Measure-groups.html")
+        )
+      ),
+      tabItem(
+        tabName = "AboutTeam",
+        mainPanel(
+          h3(textOutput("team0")),
+          textOutput("team1"),
+          textOutput("team2"),
+          textOutput("team3"),
+          textOutput("team4"),
+          textOutput("team5"),
+          textOutput("team6"),
+          hr(),
+          textOutput("team7")
+        )
+      )
+      
     )
- )
-))
-
+  )
+)
