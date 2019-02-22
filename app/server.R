@@ -27,6 +27,7 @@ library(ggplot2)
 library(rpart)
 library(zipcode)
 library(geosphere)
+library(fmsb)
 
 # switch payment to dollar signs
 payswitch <- function(payment){
@@ -185,19 +186,46 @@ shinyServer(function(input, output){
   
   
   
-  output$VI <- renderPlotly({
+  output$Rating.Payment <- renderPlotly({
     
-    b <- ggplot(importance.df, aes(x=Variables, y=MeanDecreaseGini)) +   
-         geom_point(size = importance.df$MeanDecreaseGini/12,  
-                    color = c("#999999", "#E69F00", "#56B4E9", "#009E73",  
-                              "#F0E442", "#0072B2", "#D55E00"),  
-                    alpha = 0.6) +
-         theme(axis.text.x = element_text(angle = 40))+
-         ggtitle('Variable Importance')+
-         ylab("Mean Drop Gini")+
-         theme(plot.title=element_text(hjust=0.5))
+    region <- data.frame(state.abb, state.region)
     
-    ggplotly(b) %>% layout(height = 700, width = 1000)
+    hos %>% 
+      group_by(State) %>% 
+      summarise(AvgRating = round(mean(as.numeric(Hospital.overall.rating), na.rm = T),2),
+                AvgPayment = round(mean(payment, na.rm = T),2),
+                count = n()) %>% 
+      inner_join(region, by = c("State" = "state.abb")) %>% 
+      plot_ly(x = ~AvgPayment, y = ~AvgRating, 
+              color = ~state.region, size = ~count,
+              text = ~paste(State, "<br>Payment: ", AvgPayment, "<br>Rating: ", AvgRating)) %>% 
+      layout(height = 550, width = 950)
+     
+  }
+  
+  )
+  
+  output$measurements <- renderPlot({
+    
+    measurements = hos %>% 
+      group_by(State) %>% 
+      summarise(Mortality = mean(as.numeric(Mortality.national.comparison), na.rm = T),
+                Safety = mean(as.numeric(Safety.of.care.national.comparison), na.rm = T),
+                Readmission = mean(as.numeric(Readmission.national.comparison), na.rm = T),
+                PatientExperience = mean(as.numeric(Patient.experience.national.comparison), na.rm = T),
+                Effectiveness = mean(as.numeric(Effectiveness.of.care.national.comparison), na.rm = T),
+                Timeliness = mean(as.numeric(Timeliness.of.care.national.comparison), na.rm = T),
+                MedicalImageEffectiveness = mean(as.numeric(Efficient.use.of.medical.imaging.national.comparison), na.rm = T)) %>% 
+      na.omit()
+    
+    df <- rbind(rep(3,7), rep(1,7), measurements[measurements$State == input$State,-1])
+    
+    radarchart(df, axistype=1 , seg = 2, 
+               cglcol="grey", axislabcol="grey",
+               pcol=rgb(0.4,0.6,0.8,0.8), pfcol=rgb(0.4,0.6,0.8,0.5), plwd=2,
+               caxislabels=c("below","average","above"), calcex = 1,
+               vlcex=1)
+      
     
   }
   
@@ -213,7 +241,7 @@ shinyServer(function(input, output){
       theme(plot.title= element_text(hjust=0.5, vjust=1))+
       scale_y_continuous(expand = c(0,0))+
       theme(plot.margin = unit(c(1,1,1,1), "cm"))
-    ggplotly(c) %>% layout(height = 700, width = 1000)
+    ggplotly(c) %>% layout(height = 550, width = 950)
     
       c + scale_fill_continuous(name="Frequency")
   }
@@ -230,7 +258,7 @@ shinyServer(function(input, output){
       theme(plot.title=element_text(hjust=0.5))+
       ylim(0,5)+
       theme(plot.margin = unit(c(1,1,1,1), "cm"))
-    ggplotly(d) %>% layout(height = 700, width = 1000)
+    ggplotly(d) %>% layout(height = 550, width = 950)
     
   }
   

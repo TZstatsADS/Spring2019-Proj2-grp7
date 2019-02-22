@@ -16,7 +16,8 @@ library(leaflet)
 library(shinydashboard)
 
 dashboardPage(
-  dashboardHeader(title = "Hospital For You"),
+  dashboardHeader(title = "Hospital For You",
+                  titleWidth = 260),
   skin = "blue",
   dashboardSidebar(
     width = 260,
@@ -69,15 +70,29 @@ dashboardPage(
                 tabBox(
                   width = 12,
                   tabPanel(
-                    title = "Variable Importance",
+                    title = "Rating VS Payment",
                     width = 12,
-                    plotlyOutput("VI", height = 700)
+                    plotlyOutput("Rating.Payment", height = 570)
                   ),
-                  tabPanel(title = "Number of Hospitals by State\n", plotlyOutput("NHS", height = 700)),
+                  
+                  tabPanel(title = "7 Measurements",
+                           fluidRow(
+                             column(width = 3,
+                                    br(),
+                                    selectInput("State", label = "State", selected = "NY", 
+                                                choices = as.character(unique(hos$State)))),
+                             
+                             column(width = 9,
+                                    plotOutput("measurements", height = 570))
+                           )    
+                  ),
+                  
+                  tabPanel(title = "Number of Hospitals by State\n", plotlyOutput("NHS", height = 570)),
+                  
                   tabPanel(
                     title = "Hospital Quality by State\n",
                     width = 12,
-                    plotlyOutput("HQS", height = 700)
+                    plotlyOutput("HQS", height = 570)
                   )
                 )
               )),
