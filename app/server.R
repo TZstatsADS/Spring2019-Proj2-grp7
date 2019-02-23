@@ -29,6 +29,10 @@ library(zipcode)
 library(geosphere)
 library(fmsb)
 
+# Import the data for the third part of general statistics section
+data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
+colnames(data_general3) = c("state.abb","hospital.number")
+
 # switch payment to dollar signs
 payswitch <- function(payment){
   if(is.na(payment)) {return("Not Avaliable")}
@@ -230,23 +234,18 @@ shinyServer(function(input, output){
   }
   
   )
-  
   output$NHS <- renderPlotly({
+    # specify some map projection/options
+    g <- list(
+      scope = 'usa',
+      projection = list(type = 'albers usa'),
+      lakecolor = toRGB('white')
+    )
+    plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
+            type = 'choropleth', locationmode = 'USA-states') %>%
+      layout(geo = g)
+  })
   
-    c <- ggplot(df, aes(x=State, y = Freq))+
-      geom_bar(stat="identity", aes(fill = df$Freq))+
-      labs(title= "Number of Hospitals by State", x="State", y=NULL)+
-      theme_classic()+
-      theme(axis.text.x = element_text(angle=90, size = 8))+
-      theme(plot.title= element_text(hjust=0.5, vjust=1))+
-      scale_y_continuous(expand = c(0,0))+
-      theme(plot.margin = unit(c(1,1,1,1), "cm"))
-    ggplotly(c) %>% layout(height = 550, width = 950)
-    
-      c + scale_fill_continuous(name="Frequency")
-  }
-  
-  )
   
   output$HQS <- renderPlotly({
     
