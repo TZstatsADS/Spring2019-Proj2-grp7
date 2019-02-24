@@ -15,6 +15,7 @@ library(plotly)
 library(leaflet)
 library(shinydashboard)
 
+shinyUI(
 dashboardPage(
   dashboardHeader(title = "Hospital For You",
                   titleWidth = 260),
@@ -115,7 +116,7 @@ dashboardPage(
                       submitButton("Submit", width = "70%")      
                     ),
                     column(width = 9,
-                           strong(h4('User Location:')),
+                           strong(h4('Current Location:')),
                            h4(textOutput("u_city_state")),
                            br(),
                       tabPanel('Search Results', dataTableOutput("tableinfo"), tags$style(type = "text/css", '#myTable tfoot {display:none;}'))
@@ -182,4 +183,8 @@ dashboardPage(
       
     )
   )
+,
+tags$head(
+  tags$link(rel = "stylesheet", type = "text/css", href = "links.css")
+))
 )

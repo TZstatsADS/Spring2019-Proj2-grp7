@@ -29,30 +29,12 @@ library(zipcode)
 library(geosphere)
 library(fmsb)
 
+# Import function from scripts in lib
+source("../lib/datatable_func.R")
+
 # Import the data for the third part of general statistics section
 data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
-
-# switch payment to dollar signs
-payswitch <- function(payment){
-  if(is.na(payment)) {return("Not Avaliable")}
-  else {if(payment<=1.667) {return("$")}
-    else{if(payment<=2) {return("$$")}
-      else{if(payment<=2.25) {return("$$$")}
-        else{return("$$$$")}}}}
-}
-
-# switch overall rating
-orswitch <- function(rating){
-  if(is.na(rating)){return("Not Available")}
-  else {return(as.numeric(rating))}
-}
-
-#calculate geo distance
-calDis <- function(row, u_long, u_lat){
-  distance = abs(distHaversine(c(as.numeric(row[38]),as.numeric(row[37])), c(u_long,u_lat), r=3963.190592))
-  return(distance)
-}
 
 shinyServer(function(input, output){
   #read data
@@ -127,13 +109,15 @@ shinyServer(function(input, output){
         infotable <- data1[, c(2, 3, 4, 5, 9, 11, 40, 42, 44, 47, 13)]
         infotable$Hospital.overall.rating <- apply(data.frame(as.numeric(data1$Hospital.overall.rating)),1,orswitch)
        colnames(infotable) <- c("Hospital Name","Address","City","State", "Type", "Emergency Services", "Strength", "Weakness", "Cost", "Distance in Miles", "Overall Rating")
+       infotable[,'Hospital Name'] <- createLink(infotable[,'Hospital Name'])
         infotable
 
     },
     options = list(orderClasses = TRUE, iDisplayLength = 5, lengthMenu = c(5, 10, 15, 20),
                    columnDefs = list(list(targets = c(0:10), searchable = FALSE)),
                    autoWidth = FALSE, columnDefs = list(list(width = '250px', targets = "_all"))
-                   )
+                   ),
+    escape = FALSE
   )
   
   hospIcons <- iconList(emergency = makeIcon("emergency_icon.png", iconWidth = 25, iconHeight =30),
