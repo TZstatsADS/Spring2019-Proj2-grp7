@@ -17,7 +17,7 @@ library(shinydashboard)
 
 shinyUI(
 dashboardPage(
-  dashboardHeader(title = "Hospital For You",
+  dashboardHeader(title = "Medic",
                   titleWidth = 260),
   skin = "blue",
   dashboardSidebar(
@@ -103,7 +103,7 @@ dashboardPage(
               fluidRow(
                 
                   width = 12,
-                    column(width = 3,
+                    column(width = 2,
                       #select state
                       selectInput("state", label = "State", selected = "Select", choices = append("Select",as.character(unique(hos$State)))),
                       #select hospital type
@@ -115,22 +115,21 @@ dashboardPage(
                       br(),
                       submitButton("Submit", width = "70%")      
                     ),
-                    column(width = 9,
-                           strong(h4('Current Location:')),
-                           h4(textOutput("u_city_state")),
-                           br(),
+                    column(width = 10, height=1,
+                           strong('Current Location:'),
+                           h5(textOutput("u_city_state"))),
+                    tabBox(
+                      width = 10,
+                      tabPanel(
+                        title = "Map",
+                        width = 10,
+                        solidHeader = T,
+                        leafletOutput("map")
+                      )
+                    ),
+                    column(width = 10, offset=2,
                       tabPanel('Search Results', dataTableOutput("tableinfo"), tags$style(type = "text/css", '#myTable tfoot {display:none;}'))
                     )
-                ,
-                tabBox(
-                  width = 12,
-                  tabPanel(
-                    title = "Map",
-                    width = 12,
-                    solidHeader = T,
-                    leafletOutput("map")
-                  )
-                )
               )),
       
       tabItem(
