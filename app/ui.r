@@ -26,22 +26,17 @@ dashboardPage(
       id = "tabs",
       menuItem("Welcome", tabName = "Welcome1", icon = icon("book")),
       menuItem(
-        "Introduction",
+        "About",
         icon = icon("file-text-o"),
-        menuSubItem("Read Me", tabName = "ReadMe", icon = icon("angle-right")),
-        menuSubItem(
-          "Criterion Measurement",
-          tabName = "CM",
-          icon = icon("angle-right")
-        ),
         menuSubItem(
           "About Team",
           tabName = "AboutTeam",
           icon = icon("angle-right")
-        )
+        ),
+        menuSubItem("Data", tabName = "Data", icon = icon("angle-right"))
       ),
       menuItem(
-        "Summary Statistics",
+        "Key Statistics",
         tabName = "SummaryStat",
         icon = icon("area-chart")
       ),
@@ -58,13 +53,55 @@ dashboardPage(
   dashboardBody(
     tabItems(
       tabItem(tabName = "Welcome1",
-              mainPanel(
-                img(
-                  src = "logo.png",
-                  height = 800,
-                  width = 1000
+              fluidPage(
+                fluidRow(
+                  column(12, align="center",
+                         h1(textOutput("welcome1")),
+                         tags$style(type = "text/css", '#welcome1{
+                                                        font-size: 40px;
+                                                        margin-bottom: 30px;
+                                                        }'),
+                         div(style="display: inline-block; width: 100%;", img(src = "find_hospital.png", width=800))),
+                  column(12,
+                         textOutput("welcome2"),
+                         tags$style(type="text/css", "#welcome2{
+                                                      font-size:20px;
+                                                      margin-top: 30px;")),
+                  column(12,
+                         textOutput("welcome3"),
+                         tags$style(type="text/css", "#welcome3{
+                                                      font-size:20px;
+                                                      margin-top:20px;")),
+                  column(6,
+                         strong(textOutput("welcome4")),
+                         tags$style(type="text/css", "#welcome4{
+                                                      font-size:20px;
+                                                      margin-top:10px;")),
+                  column(6,
+                         strong(textOutput("welcome5")),
+                         tags$style(type="text/css", "#welcome5{
+                                                      font-size:20px;
+                                                      margin-top:10px;")),
+                  column(6,
+                         uiOutput("welcome6"),
+                         tags$style(type="text/css", "#welcome6{
+                                                      font-size:20px;
+                                                      margin-top:10px;
+                                                      padding:5px;}")),
+                  column(6,
+                         textOutput("welcome7"),
+                         uiOutput("welcome8"),
+                         tags$style(type="text/css", "#welcome7{
+                                    font-size:20px;
+                                    margin-top:10px;
+                                    padding:5px;}"),
+                         tags$style(type="text/css", "#welcome8{
+                                    font-size:20px;
+                                    margin-top:10px;
+                                    padding:5px;}"))
                 )
-              )),
+              )
+              ),
       
       tabItem(tabName = "SummaryStat",
               fluidRow(
@@ -80,7 +117,7 @@ dashboardPage(
                            fluidRow(
                              column(width = 3,
                                     br(),
-                                    selectInput("State", label = "State", selected = "NY", 
+                                    selectInput("measurement_state", label = "State", selected = "NY", 
                                                 choices = as.character(unique(hos$State)))),
                              
                              column(width = 9,
@@ -131,40 +168,6 @@ dashboardPage(
                       tabPanel('Search Results', dataTableOutput("tableinfo"), tags$style(type = "text/css", '#myTable tfoot {display:none;}'))
                     )
               )),
-      
-      tabItem(
-        tabName = "ReadMe",
-        mainPanel(
-          h2(textOutput("read0")),
-          textOutput("read1"),
-          hr(),
-          h3(textOutput("read2")),
-          textOutput("read3"),
-          textOutput("read4"),
-          textOutput("read5"),
-          textOutput("read6"),
-          hr(),
-          h3(textOutput("read7")),
-          textOutput("read8"),
-          a("Here", href = "https://www.medicare.gov/hospitalcompare/search.html")
-        )
-      ),
-      tabItem(
-        tabName = "CM",
-        mainPanel(
-          h3(textOutput("read9")),
-          textOutput("read10"),
-          textOutput("read11"),
-          textOutput("read12"),
-          textOutput("read13"),
-          textOutput("read14"),
-          textOutput("read15"),
-          textOutput("read16"),
-          hr(),
-          textOutput("read17"),
-          a("Here", href = "https://www.medicare.gov/hospitalcompare/Data/Measure-groups.html")
-        )
-      ),
       tabItem(
         tabName = "AboutTeam",
         mainPanel(
@@ -177,6 +180,22 @@ dashboardPage(
           textOutput("team6"),
           hr(),
           textOutput("team7")
+        )
+      ),
+      
+      tabItem(
+        tabName = "Data",
+        mainPanel(
+          h3(textOutput("datapage1")),
+          textOutput("datapage2"),
+          a("Inpatient Prospective Payment System (IPPS)", href = "https://data.cms.gov/Medicare-Inpatient/Inpatient-Prospective-Payment-System-IPPS-Provider/97k6-zzx3"),
+          br(),
+          a("Hospital General Information", href = "https://data.medicare.gov/Hospital-Compare/Hospital-General-Information/xubh-q36u"),
+          h3(textOutput("datapage3")),
+          uiOutput("datapage4"),
+          textOutput("datapage5"),
+          a("Medicare Data Definitions", href = "https://www.medicare.gov/hospitalcompare/Data/Measure-groups.html")
+          
         )
       )
       

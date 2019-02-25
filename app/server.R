@@ -143,24 +143,37 @@ shinyServer(function(input, output){
       addMarkers(v7()$lon, v7()$lat, popup = content, icon = hospIcons[v7()$TF], clusterOptions = markerClusterOptions())
   })
   
-  output$read0<- renderText({"Introduction"})
-  output$read1<- renderText({"Greetings! If you are thinking of finding a hospital you can go, you can just save your time and look at our app. Our group has created an app helping you to find the best hospitals around you based on your preference on 7 aspects of hospitals including mortality, safety of care, readmission rate, patient experience, effectiveness of care, timeliness of care and efficient use of medical imaging. With your choice, it will be so easy to find the one fits you the best."})
-  output$read2<- renderText({"User Manual"})
-  output$read3<- renderText({"-> Step 1: Choose the State you live in or you need to go to. Simultaneously, you can also specify the type of hospital you may go to."})
-  output$read4<- renderText({"-> Step 2: Choose how much do your care about on the each of the seven aspects of a hospital."})
-  output$read5<- renderText({"-> Step 3: Check the Medicare Assessment table for the basic information of all hospitals, and the most importantly check the Personalized Ranking table to see which are the best ones for you."})
-  output$read6<- renderText({"-> Step 4: Click on the map to see the exact location of the hospital and gogogo!"})
-  output$read7<- renderText({"Data Source"})
-  output$read8<- renderText({"The data is provided by Medicare government website, for more information, click the link below:"})
-  output$read9<- renderText({"Criterion Measurement"})
-  output$read10<- renderText({"1. Mortality measures the death rate of patients."})
-  output$read11<- renderText({"2. Safety of care measures the rate of certain complications and infections."})
-  output$read12<- renderText({"3. Readmission measures the rate of unplanned readmission after treatment."})
-  output$read13<- renderText({"4. Patient experience measures how well patients feel during treatment, surgery and hospitalization."})
-  output$read14<- renderText({"5. Effectiveness of care measures how appropriately patients are treated."})
-  output$read15<- renderText({"6. Timeliness of care measures the time patients waiting."})
-  output$read16<- renderText({"7. Efficient use of medical imaging measures how efficiently the hospitals using medical imaging such as MRI and CT scans."})
-  output$read17<- renderText({"For more information, click the link below:"})
+  output$welcome1 <- renderText({"Find your perfect hospital"})
+  output$welcome2 <- renderText({"The United States has one of the most complicated and expensive healthcare systems in the world. However, healthcare is a basic necessity that everyone deserves and, regardless of your insurance, you should be able to find the best hospital for you."})
+  output$welcome3 <- renderText({"Medic provides two key features to solving this healthcare mystery: "})
+  output$welcome4 <- renderText({"1. Key Statistics"})
+  output$welcome5 <- renderText({"2. Hospital Recommendations"})
+  output$welcome6 <- renderUI(HTML("Explore and investigate hospitals nationwide: 
+                                     <ul><li>Hospital assessments using 7 criteria: Mortality, Safety, Readmission, Patient Experience, Effectiveness, Timeliness, and Medical Image Effectiveness</li>
+                                         <li>Insurance coverage vs. Patient payment ratio and amounts</li>
+                                         <li>Number of hospitals in each state </li></ul>"))
+  output$welcome7 <- renderText({"Search and find the best hospital nearby you."})
+  #output$welcome8 <- renderText({"Use an interactive map and table to filter the hospitals based on these key features:"})
+  output$welcome8 <- renderUI(HTML("Interact with the map, table, and filters to find your perfet hospital:
+                                     <ul><li> State, type, zipcode, distance, cost, and availability of emergency services</li>
+                                         <li> Click on hospitals to see further reports on the hospital by US News</li>
+                                         </ul>"))
+  
+  output$datapage1 <- renderText({"Data Source"})
+  output$datapage2<- renderText({"The data was provided/imported from the US Government Open Data website:"})
+  output$datapage3 <- renderText({"Data Definitions"})
+  output$datapage4 <- renderUI(HTML("<ul><li><b>Mortality</b>: Death rate of patients </li>
+                                   <li><b>Safety</b>: Rate of infection and complication after surgery</li>
+                                   <li><b>Readmission</b>: Rate of unplanned readmission after surgery and its return days </li>
+                                   <li><b>Patient Experience</b>: Patients' reports about communication, pain control, help, sanitation, and overall care </li>
+                                   <li><b>Effectiveness</b>: Percentage of patients who were effectively given treatment or conducted follow-up screening/scanning upon arrival </li>
+                                   <li><b>Timeliness</b>: Average time patients spent at hospital before admittance, transfer, or diagnosis from a doctor</li>
+                                   <li><b>Medical Image EFfective</b>: Effectiveness in using MRI, CT, and other medical imaging technology for outpatients</li>
+                                   <li><b>Strengths</b>: Criteria that the respective hospitals were assessed to be above the national average</li>
+                                   <li><b>Weaknesses</b>: Criteria that the respective hospitals were assessed to be below the national average</li>
+
+                                   </ul>"))
+  output$datapage5 <- renderText({"For further details: "})
   
   
   output$team0<- renderText({"About Team"})
@@ -195,8 +208,8 @@ shinyServer(function(input, output){
   
   output$measurements <- renderPlot({
     
-    measurements = hos %>% 
-      group_by(State) %>% 
+    measurements = hos %>%
+      filter(State == input$measurement_state) %>% 
       summarise(Mortality = mean(as.numeric(Mortality.national.comparison), na.rm = T),
                 Safety = mean(as.numeric(Safety.of.care.national.comparison), na.rm = T),
                 Readmission = mean(as.numeric(Readmission.national.comparison), na.rm = T),
@@ -206,14 +219,13 @@ shinyServer(function(input, output){
                 MedicalImageEffectiveness = mean(as.numeric(Efficient.use.of.medical.imaging.national.comparison), na.rm = T)) %>% 
       na.omit()
     
-    df <- rbind(rep(3,7), rep(1,7), measurements[measurements$State == input$State,-1])
     
+    df <- rbind(rep(3,7), rep(1,7), measurements)
     radarchart(df, axistype=1 , seg = 2, 
                cglcol="grey", axislabcol="grey",
                pcol=rgb(0.4,0.6,0.8,0.8), pfcol=rgb(0.4,0.6,0.8,0.5), plwd=2,
                caxislabels=c("below","average","above"), calcex = 1,
                vlcex=1)
-      
     
   }
   
