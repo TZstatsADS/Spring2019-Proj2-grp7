@@ -118,13 +118,9 @@ dashboardPage(
                              column(width = 9,plotOutput("measurements", height = 570)))),
                   tabPanel(title = "Rating VS Payment",width = 12,plotlyOutput("Rating.Payment", height = 570)),
                   
-                  tabPanel(title = "Number of Hospitals by State\n", plotlyOutput("NHS", height = 570)),
+                  tabPanel(title = "Heatmap of Hospitals\n", plotlyOutput("NHS", height = 570))
                   
-                  tabPanel(
-                    title = "Hospital Quality by State\n",
-                    width = 12,
-                    plotlyOutput("HQS", height = 570)
-                  )
+
                 )
               )),
       

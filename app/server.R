@@ -251,21 +251,5 @@ shinyServer(function(input, output){
       layout(geo = g)
   })
   
-  
-  output$HQS <- renderPlotly({
-    
-    d <- ggplot(hospital_ratings.df, aes(x=State, y=HospitalRating))+
-      geom_bar(stat="identity", alpha = 0.7, fill = "#009E73") +
-      labs(title="Hospital Quality by State", x="State", y="Quality - OverallRating (1-5)")+
-      theme_classic()+
-      theme(axis.text.x=element_text(angle=90, hjust=1, size = 8))+
-      theme(plot.title=element_text(hjust=0.5))+
-      ylim(0,5)+
-      theme(plot.margin = unit(c(1,1,1,1), "cm"))
-    ggplotly(d) %>% layout(height = 550, width = 950)
-    
-  }
-  
-  )
 
  })
