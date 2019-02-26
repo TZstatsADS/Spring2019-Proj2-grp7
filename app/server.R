@@ -190,17 +190,26 @@ shinyServer(function(input, output){
   output$Rating.Payment <- renderPlotly({
     
     region <- data.frame(state.abb, state.region)
+    region$state.abb <- as.character(region$state.abb)
+    hos$State <- as.character(hos$State)
     
-    hos %>% 
+    hosnew <- hos %>% 
       group_by(State) %>% 
       summarise(AvgRating = round(mean(as.numeric(Hospital.overall.rating), na.rm = T),2),
                 AvgPayment = round(mean(payment, na.rm = T),2),
                 count = n()) %>% 
-      inner_join(region, by = c("State" = "state.abb")) %>% 
-      plot_ly(x = ~AvgPayment, y = ~AvgRating, 
-              color = ~state.region, size = ~count,
-              text = ~paste(State, "<br>Payment: ", AvgPayment, "<br>Rating: ", AvgRating)) %>% 
-      layout(height = 550, width = 950)
+      inner_join(region, by = c("State" = "state.abb")) 
+    
+    p <- list()
+    i = 1
+    for(r in unique(hosnew$state.region)){
+      df <- filter(hosnew, hosnew$state.region == r)
+      p[i] <- plot_ly(df, x = ~AvgPayment, y = ~AvgRating, type = "scatter", mode = "markers",
+                      color = ~state.region, size = ~count,
+                      text = ~paste(State, "<br>Payment: ", AvgPayment, "<br>Rating: ", AvgRating)) 
+      i = i+1
+    }
+    subplot(p1,p2,p3,p4,nrows = 2, shareX = T, shareY = T)
      
   }
   
