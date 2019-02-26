@@ -5,11 +5,11 @@ Term: Spring 2018
 
 ### **Team #8**
 + Team Members:
-	+ team member: Guo, Xiaoxiao (email: xg2282@columbia.edu)
-	+ team member: He, Shan (email: sh3667@columbia.edu)
-	+ team member: Utomo, Michael (email: mu2251@columbia.edu)
-	+ team member: Wen, Lan (email: lw2773@columbia.edu)
-	+ team member: Yao, Jingtian (email: jy2867@columbia.edu)
+	+ team member: Han, Seungwook (email: sh3264@columbia.edu)
+	+ team member: Liu, Siwei (email:sl4224@columbia.edu)
+	+ team member: Lu, Shuang (email:sl4397@columbia.edu)
+	+ team member: Xia, Mengran (email:mx2205@columbia.edu)
+	+ team member: Zeng, Yiyang (email:yz3403@gsb.columbia.edu)
   + presenter: Utomo, Michael
   
 ### **Project summary**: 
@@ -41,7 +41,7 @@ You can take a first look of how our app looks like:
 All team members participated in group discussions and designed the content of this App. Lan Wen and Jingtian Yao respectively found the dataset of hospital general information and payment dataset. Xiaoxiao Guo, Jingtian Yao and Lan Wen merged the data and cleaned the data in the Excel. Shan He wrote the filter and table shiny UI and Server part. Lan Wen and Xiaoxiao Guo wrote the map Shiny UI and Server part. Jingtian Yao wrote the score function designed by Xiaoxiao Guo and the ranking UI and Server part. Michael Utomo built the Random Forest model and the code for the summary statistics and EDA. Xiaoxiao Guo combined the summary statistics into shiny UI and Server part. Shan He, Lan Wen, Michael Utomo, and Jingtian Yao edited the Introduction page of the app.  Shan He summarized the folder and deployed the app. In addition, all team members revised the Shiny UI framework. Michael Utomo also helped resolve some of the issues that other team members have during the meetings, like issues on the Google Maps and issues of the ranking, and was responsible for the welcome logo. All team members contributed to the GitHub repository. All team members approve our work presented in our GitHub repository including this contribution statement.
 
 ### **Reference**:
-1. Some design ideas were inspired by the project 2 of Spring Semester 2017 Group 10. Author: Tongyue Liu, Yue Jin, Yijia Pan, Jia Hui Tan and Qingyuan Zhang. Columbia University, 2017.
+1. Some design ideas were inspired by the project 2 of Spring Semester 2018 Group 8. Author: Tongyue Liu, Yue Jin, Yijia Pan, Jia Hui Tan and Qingyuan Zhang. Columbia University, 2017.
 2. Tutorial 2.Rmd, Prof. Ying Liu, Chengliang Tang
 3. Shiny_tutorial.Rmd, Chengliang Tang
 4. https://github.com/TZstatsADS/Fall2016-Proj2-grp14
