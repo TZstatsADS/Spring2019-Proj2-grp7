@@ -32,7 +32,7 @@ If you are thinking of finding hispitals you can go, you can just save your time
 
 Below is a sneakpeak of our app:
 
-![screenshot](doc/Overlook.jpg)
+![screenshot](doc/Overlook.png)
 
 ### Your Health Cannot Wait! Find The HosAllpital And Keep Your Smile Forever Now!
 
