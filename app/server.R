@@ -175,15 +175,67 @@ shinyServer(function(input, output){
                                    </ul>"))
   output$datapage5 <- renderText({"For further details: "})
   
-  
-  output$team0<- renderText({"About Team"})
-  output$team1<- renderText({"This app is developed in Spring 2018 by: "})
-  output$team2<- renderText({"-> Guo, Xiaoxiao (email: xg2282@columbia.edu)"})
-  output$team3<- renderText({"-> He, Shan (email: sh3667@columbia.edu)"})
-  output$team4<- renderText({"-> Utomo, Michael (email: mu2251@columbia.edu)"})
-  output$team5<- renderText({"-> Wen, Lan (email: lw2773@columbia.edu)"})
-  output$team6<- renderText({"-> Yao, Jingtian (email: jy2867@columbia.edu)"})
-  output$team7<- renderText({"We are a group of Columbia University M.A. in Statistics students eager to make the world an easier place to live in, and we are taking a tiny step here by developing this app to help you find the best and most fitted hospitals. Good luck!"})
+  output$teampage1 <- renderText({"Meet the Team"})
+  output$teampage2 <- renderUI(HTML("<div class=\"row\">
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"Shuang\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Shuang Lu</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>sl4397@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"Mengran\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Mengran Xia</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>mx2205@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Siwei Liu</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>sl4224@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"row\">
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"Yiyang\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Joe Yiyang Zheng</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>yz3504@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"Seungwook\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Seungwook Han</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>sh3264@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    "))
   
   
   
