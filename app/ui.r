@@ -117,8 +117,9 @@ dashboardPage(
                            fluidRow(
                              column(width = 3,
                                     br(),
-                                    selectInput("measurement_state", label = "State", selected = "NY", 
-                                                choices = as.character(unique(hos$State)))),
+                                    selectInput("measurement_state", label = "State", selected = "Select", 
+                                                append("Select",as.character(unique(hos$State))[0:53])),
+                                    submitButton("Submit", width = "70%")),
                              
                              column(width = 9,
                                     plotOutput("measurements", height = 570))
