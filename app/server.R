@@ -258,7 +258,10 @@ shinyServer(function(input, output){
       df <- filter(hosnew, hosnew$state.region == r)
       p[i] <- plot_ly(df, x = ~AvgPaymentScore, y = ~AvgRating, type = "scatter", mode = "markers",
                       color = ~state.region, size = ~count,
-                      text = ~paste(State, "<br>Payment: ", AvgPaymentScore, "<br>Rating: ", AvgRating)) 
+                      text = ~paste(State, "<br>Payment: ", AvgPaymentScore, "<br>Rating: ", AvgRating)) %>%
+                      layout(title = 'Grouped Scatter Plots of Hospital Rating and Payment Situations',
+                             xaxis = list(title = 'Average Payment Score',zeroline = TRUE,range = c(1.3,2.8)),
+                             yaxis = list(title = 'Average Hospital Rating',range = c(2,5)))
       i = i+1
     }
     subplot(p,nrows = 2, shareX = T, shareY = T)
@@ -286,7 +289,7 @@ shinyServer(function(input, output){
                cglcol="grey", axislabcol="grey",
                pcol=rgb(0.4,0.6,0.8,0.8), pfcol=rgb(0.4,0.6,0.8,0.5), plwd=2,
                caxislabels=c("below","average","above"), calcex = 1,
-               vlcex=1)
+               vlcex=1, title = "Radar Chart of Hospital Performances by State")
     
   }
   
