@@ -10,7 +10,7 @@ Term: Spring 2018
 	+ team member: Lu, Shuang (email:sl4397@columbia.edu)
 	+ team member: Xia, Mengran (email:mx2205@columbia.edu)
 	+ team member: Zeng, Yiyang (email:yz3403@gsb.columbia.edu)
-  + presenter: Utomo, Michael
+  + presenter: Han, Seungwook
   
 ### **Project summary**: 
 
@@ -18,11 +18,11 @@ The 21st century is developing and changing rapidly. As a result, people are pay
 
 If you are thinking of finding hispitals you can go, you can just save your time and look at our app. Our group has created an app helping you to find the best hospitals around you based on your preferences on 7 aspects of hospitals including mortality, safety of care, readmission rate, patient experience, effectiveness of care, timeliness of care and efficient use of medical imaging. With your choice, it will be so easy to find the one fits you the best.
 
-##### Find The Best One With Just One Click: https://spring-2018-project2-group8.shinyapps.io/group8/
+##### Find The Hospital that Fits Your Need the Most within Just One Click: https://spring-2018-project2-group8.shinyapps.io/group8/
 
 -- User Manual:
 
---- Step 1: Choose the State you live in or you need to go to. Simultaneously, you can also specify the type of hospital you may go to.
+--- Step 1: Fill in the information Choose the State you live in or you need to go to. Simultaneously, you can also specify the type of hospital you may go to.
 
 --- Step 2: Choose how much do your care about on the each of the seven aspects of a hospital.
 
