@@ -49,7 +49,7 @@ shinyServer(function(input, output){
   
   data <- hos
   
-  data1 <- data %>% select(State,Points_A_Cost) %>% na.omit() %>% group_by(State) %>% summarise_each(funs(mean))
+  data1 <- data %>% select(State,Points_A_Cost) %>% na.omit() %>% group_by(State) %>% summarise_all(funs(mean))
   data1$Points_A_Cost <- format(round(data1$Points_A_Cost, 2), nsmall = 2)
   
   hospital$Average.Covered.Charges <- as.numeric(hospital$Average.Covered.Charges)
@@ -305,8 +305,9 @@ shinyServer(function(input, output){
   }
   
   )
-  if(input$Hospital_Map == "Number of Hospitals"){
-    output$Hospital_Map <- renderPlotly({
+  
+  output$Hospital_Map = renderPlotly({
+    if(input$Hospital_Map == "Number of Hospitals"){
       g <- list(
         scope = 'usa',
         projection = list(type = 'albers usa'),
@@ -315,9 +316,7 @@ shinyServer(function(input, output){
       plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
               type = 'choropleth', locationmode = 'USA-states') %>%
         layout(geo = g)
-    })
-  }else if (input$Hospital_Map == "Hospital Covered Percentage"){
-    output$Hospital_Map <- renderPlotly({
+    }else if(input$Hospital_Map == "Hospital Covered Percentage"){
       g <- list(
         scope = 'usa',
         projection = list(type = 'albers usa'),
@@ -326,9 +325,7 @@ shinyServer(function(input, output){
       plot_ly(z = data2$percentage, text = data2$Provider.State, locations = data2$Provider.State,
               type = 'choropleth', locationmode = 'USA-states') %>%
         layout(geo = g)
-    })
-  }else {
-    output$Hospital_Map <- renderPlotly({
+    }else{
       g <- list(
         scope = 'usa',
         projection = list(type = 'albers usa'),
@@ -337,8 +334,9 @@ shinyServer(function(input, output){
       plot_ly(z = data1$Points_A_Cost, text = data1$State, locations = data1$State,
               type = 'choropleth', locationmode = 'USA-states') %>%
         layout(geo = g)
-    })
-  }
+    }
+  })
+ 
   
 
  })
