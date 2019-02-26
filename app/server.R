@@ -36,8 +36,8 @@ source("../lib/datatable_func.R")
 data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
 
-hospital = read.csv("../output/Inpatient_Prospective_Payment_System__IPPS__Provider_Summary_for_the_Top_100_Diagnosis-Related_Groups__DRG__-_FY2011.csv", header = FALSE)
-
+hospital = read.csv("../output/Inpatient_Prospective_Payment_System__IPPS__Provider_Summary_for_the_Top_100_Diagnosis-Related_Groups__DRG__-_FY2011.csv", header = TRUE)
+head(hospital,10)
 
 shinyServer(function(input, output){
   #read data
@@ -46,17 +46,17 @@ shinyServer(function(input, output){
   load("./df.RData")
   load("./hospital_ratings.RData")
   data(zipcode)
-  
+
   data <- hos
   
-  data1 <- data %>% select(State,Points_A_Cost) %>% na.omit() %>% group_by(State) %>% summarise_each(funs(mean))
+  data1 <- data %>% select(State,Points_A_Cost) %>% na.omit() %>% group_by(State) %>% summarise_all(funs(mean))
   data1$Points_A_Cost <- format(round(data1$Points_A_Cost, 2), nsmall = 2)
   
   hospital$Average.Covered.Charges <- as.numeric(hospital$Average.Covered.Charges)
   hospital$Average.Total.Payments <- as.numeric(hospital$Average.Total.Payments)
   hospital$Average.Medicare.Payments <- as.numeric(hospital$Average.Medicare.Payments)
   
-  data2 <- hospital %>% select(Provider.State, Average.Covered.Charges, Average.Total.Payments)%>% group_by(Provider.State) %>% summarise_each(mean)
+  data2 <- hospital %>% select(Provider.State, Average.Covered.Charges, Average.Total.Payments)%>% group_by(Provider.State) %>% summarise_all(mean)
   data2$percentage <- with(data2, Average.Covered.Charges/(Average.Covered.Charges+Average.Total.Payments))
   data2$percentage <- format(round(data2$percentage, 2), nsmall = 2)
 
