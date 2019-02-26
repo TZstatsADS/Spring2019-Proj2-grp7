@@ -118,11 +118,17 @@ dashboardPage(
                              column(width = 9,plotOutput("measurements", height = 570)))),
                   tabPanel(title = "Rating VS Payment",width = 12,plotlyOutput("Rating.Payment", height = 570)),
                   
-                  tabPanel(title = "Heatmap of Hospitals\n", plotlyOutput("NHS", height = 570))
-                  
-
-                )
-              )),
+                  tabPanel(title = "Hospital_Map",
+                           fluidRow(
+                             column(width = 3,
+                                    br(),
+                                    selectInput("Hospital_Map", label = "Map Type", selected = "Number of Hospitals", 
+                                                choices = c("Number of Hospitals","Hospital Covered Percentage","Hospital Rating"))),
+                             
+                             column(width = 9,
+                                    plotOutput("Hospital_Map", height = 570))
+                           )    
+                  ),
       
       tabItem(tabName = "HospitalRecommend",
               

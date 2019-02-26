@@ -36,6 +36,9 @@ source("../lib/datatable_func.R")
 data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
 
+hospital = read.csv("../output/Inpatient_Prospective_Payment_System__IPPS__Provider_Summary_for_the_Top_100_Diagnosis-Related_Groups__DRG__-_FY2011.csv", header = FALSE)
+
+
 shinyServer(function(input, output){
   #read data
   load("./hos.RData")
@@ -45,6 +48,17 @@ shinyServer(function(input, output){
   data(zipcode)
   
   data <- hos
+  
+  data1 <- data %>% select(State,Points_A_Cost) %>% na.omit() %>% group_by(State) %>% summarise_each(funs(mean))
+  data1$Points_A_Cost <- format(round(data1$Points_A_Cost, 2), nsmall = 2)
+  
+  hospital$Average.Covered.Charges <- as.numeric(hospital$Average.Covered.Charges)
+  hospital$Average.Total.Payments <- as.numeric(hospital$Average.Total.Payments)
+  hospital$Average.Medicare.Payments <- as.numeric(hospital$Average.Medicare.Payments)
+  
+  data2 <- hospital %>% select(Provider.State, Average.Covered.Charges, Average.Total.Payments)%>% group_by(Provider.State) %>% summarise_each(mean)
+  data2$percentage <- with(data2, Average.Covered.Charges/(Average.Covered.Charges+Average.Total.Payments))
+  data2$percentage <- format(round(data2$percentage, 2), nsmall = 2)
 
   #Inputs
   
@@ -291,17 +305,40 @@ shinyServer(function(input, output){
   }
   
   )
-  output$NHS <- renderPlotly({
-    # specify some map projection/options
-    g <- list(
-      scope = 'usa',
-      projection = list(type = 'albers usa'),
-      lakecolor = toRGB('white')
-    )
-    plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
-            type = 'choropleth', locationmode = 'USA-states') %>%
-      layout(geo = g)
-  })
+  if(input$Hospital_Map == "Number of Hospitals"){
+    output$Hospital_Map <- renderPlotly({
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g)
+    })
+  }else if (input$Hospital_Map == "Hospital Covered Percentage"){
+    output$Hospital_Map <- renderPlotly({
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data2$percentage, text = data2$Provider.State, locations = data2$Provider.State,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g)
+    })
+  }else {
+    output$Hospital_Map <- renderPlotly({
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data1$Points_A_Cost, text = data1$State, locations = data1$State,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g)
+    })
+  }
   
 
  })
