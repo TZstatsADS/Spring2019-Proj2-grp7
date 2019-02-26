@@ -159,7 +159,8 @@ shinyServer(function(input, output){
   #output$welcome8 <- renderText({"Use an interactive map and table to filter the hospitals based on these key features:"})
   output$welcome8 <- renderUI(HTML("Interact with the map, table, and filters to find your perfet hospital:
                                      <ul><li> State, type, zipcode, distance, cost, and availability of emergency services</li>
-                                         <li> Click on hospitals to see further reports on the hospital by US News</li>
+                                         <li> Click on hospitals to see reports on the hospital by US News</li>
+                                        <li> The ranks of search results are based on an algorithm that takes hospital strength, weakness and cost into account.</li> 
                                          </ul>"))
   
   output$datapage1 <- renderText({"Data Source"})
