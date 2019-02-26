@@ -32,9 +32,12 @@ library(fmsb)
 # Import function from scripts in lib
 source("../lib/datatable_func.R")
 
-# Import the data for the third part of general statistics section
+# Import data for the key statistics section
 data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
+
+data1 <- read.csv("../data/data1.csv")
+data2 <- read.csv("../data/data2.csv")
 
 shinyServer(function(input, output){
   #read data
@@ -270,6 +273,38 @@ shinyServer(function(input, output){
   
   )
   
+  
+  output$heatmaps <- renderPlotly({
+    if(input$MapType == "Number of Hospitals"){
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g)
+    }else if (input$MapType == "Hospital Rating"){
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data2$Points_A_Cost, text = data2$State, locations = data2$State,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g)
+    }else{
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data1$percentage, text = data1$Provider.State, locations = data1$Provider.State,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g)
+    }
+  })
+  
   output$measurements <- renderPlot({
     
     measurements = hos %>%
@@ -294,17 +329,7 @@ shinyServer(function(input, output){
   }
   
   )
-  output$NHS <- renderPlotly({
-    # specify some map projection/options
-    g <- list(
-      scope = 'usa',
-      projection = list(type = 'albers usa'),
-      lakecolor = toRGB('white')
-    )
-    plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
-            type = 'choropleth', locationmode = 'USA-states') %>%
-      layout(geo = g)
-  })
+
   
 
  })
