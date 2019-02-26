@@ -193,5 +193,7 @@ dashboardPage(
 ,
 tags$head(
   tags$link(rel = "stylesheet", type = "text/css", href = "links.css")
-))
 )
+)
+)
+)))
