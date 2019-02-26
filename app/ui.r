@@ -107,24 +107,16 @@ dashboardPage(
               fluidRow(
                 tabBox(
                   width = 12,
-                  tabPanel(
-                    title = "Rating VS Payment",
-                    width = 12,
-                    plotlyOutput("Rating.Payment", height = 570)
-                  ),
                   
                   tabPanel(title = "7 Measurements",
                            fluidRow(
                              column(width = 3,
                                     br(),
-                                    selectInput("measurement_state", label = "State", selected = "Select", 
-                                                append("Select",as.character(unique(hos$State))[0:53])),
+                                    selectInput("measurement_state", label = "State", selected = "NY", 
+                                    choices = as.character(unique(hos$State))[c(0:51,53)]),
                                     submitButton("Submit", width = "70%")),
-                             
-                             column(width = 9,
-                                    plotOutput("measurements", height = 570))
-                           )    
-                  ),
+                             column(width = 9,plotOutput("measurements", height = 570)))),
+                  tabPanel(title = "Rating VS Payment",width = 12,plotlyOutput("Rating.Payment", height = 570)),
                   
                   tabPanel(title = "Number of Hospitals by State\n", plotlyOutput("NHS", height = 570)),
                   
