@@ -165,16 +165,10 @@ dashboardPage(
               )),
       tabItem(
         tabName = "AboutTeam",
-        mainPanel(
-          h3(textOutput("team0")),
-          textOutput("team1"),
-          textOutput("team2"),
-          textOutput("team3"),
-          textOutput("team4"),
-          textOutput("team5"),
-          textOutput("team6"),
-          hr(),
-          textOutput("team7")
+        fluidPage(
+          h3(textOutput("teampage1")),
+          uiOutput("teampage2"),
+          tags$link(rel = "stylesheet", type="text/css", href="team.css")
         )
       ),
       
