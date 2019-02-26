@@ -222,7 +222,7 @@ shinyServer(function(input, output){
                                     <div class=\"container\">
                                     <h4>Joe Yiyang Zheng</h4>
                                     <p class=\"title\">Columbia University</p>
-                                    <p>yz3504@columbia.edu</p>
+                                    <p>yizeng19@gsb.columbia.edu</p>
                                     </div>
                                     </div>
                                     </div>
@@ -283,7 +283,7 @@ shinyServer(function(input, output){
       )
       plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
               type = 'choropleth', locationmode = 'USA-states') %>%
-        layout(geo = g)
+        layout(geo = g, title = 'Heatmap of Number of Hospitals')
     }else if (input$MapType == "Hospital Rating"){
       g <- list(
         scope = 'usa',
@@ -292,7 +292,7 @@ shinyServer(function(input, output){
       )
       plot_ly(z = data2$Points_A_Cost, text = data2$State, locations = data2$State,
               type = 'choropleth', locationmode = 'USA-states') %>%
-        layout(geo = g)
+        layout(geo = g, title = 'Heatmap of Number of Hospitals')
     }else{
       g <- list(
         scope = 'usa',
@@ -301,7 +301,7 @@ shinyServer(function(input, output){
       )
       plot_ly(z = data1$percentage, text = data1$Provider.State, locations = data1$Provider.State,
               type = 'choropleth', locationmode = 'USA-states') %>%
-        layout(geo = g)
+        layout(geo = g, title = 'Heatmap of Medicare Covered Percentage of Hospitals')
     }
   })
   

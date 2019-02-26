@@ -113,7 +113,7 @@ dashboardPage(
                              column(width = 3,
                                     br(),
                                     selectInput("MapType", label = "Type of Map", selected = "Number of Hospitals", 
-                                                choices = c("Number of Hospitals", "Hospital Rating",
+                                                choices = c("Number of Hospitals", "Hospital Quality",
                                                             "Medicare Coverage Percentage")),
                                     submitButton("Submit", width = "70%")),
                              column(width = 9,plotlyOutput("heatmaps", height = 570)))),
