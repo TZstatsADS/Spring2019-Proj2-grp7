@@ -209,7 +209,7 @@ shinyServer(function(input, output){
                       text = ~paste(State, "<br>Payment: ", AvgPayment, "<br>Rating: ", AvgRating)) 
       i = i+1
     }
-    subplot(p1,p2,p3,p4,nrows = 2, shareX = T, shareY = T)
+    subplot(p,nrows = 2, shareX = T, shareY = T)
      
   }
   
