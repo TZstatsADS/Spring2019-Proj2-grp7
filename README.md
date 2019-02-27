@@ -66,6 +66,9 @@ __Shuang Lu:__
 * Implemented the selectInput functionality of the 'Hostipal Heatmaps' for the page to display the selected type of heatmap under the 'Key Statistics' section.
 
 __Mengran Xia:__
+* Created the interactive heat map of Hospital quality the 'Key Statistics' section.
+* Created the interactive heat map of Medicare Coverage Percentage the 'Key Statistics' section.
+* Partook in writing the Project Summary part of readme files
 
 __Yiyang Zeng:__
 * Made some changes to the hospital recommendation/search page
