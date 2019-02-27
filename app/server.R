@@ -154,7 +154,9 @@ shinyServer(function(input, output){
   output$welcome6 <- renderUI(HTML("Explore and investigate hospitals nationwide: 
                                      <ul><li>Hospital assessments using 7 criteria: Mortality, Safety, Readmission, Patient Experience, Effectiveness, Timeliness, and Medical Image Effectiveness</li>
                                          <li>Insurance coverage vs. Patient payment ratio and amounts</li>
-                                         <li>Number of hospitals in each state </li></ul>"))
+                                         <li>Number of hospitals in each state </li>
+                                          <li>Payment vs Hospital Rating/Quality in each state </li>
+                                   </ul>"))
   output$welcome7 <- renderText({"Search and find the best hospital nearby you."})
   #output$welcome8 <- renderText({"Use an interactive map and table to filter the hospitals based on these key features:"})
   output$welcome8 <- renderUI(HTML("Interact with the map, table, and filters to find your perfet hospital:
@@ -221,7 +223,7 @@ shinyServer(function(input, output){
                                     <div class=\"card\">
                                     <img src=\"team1.jpg\" alt=\"Yiyang\" style=\"width:100%\" >
                                     <div class=\"container\">
-                                    <h4>Joe Yiyang Zheng</h4>
+                                    <h4>Joe Yiyang Zeng</h4>
                                     <p class=\"title\">Columbia University</p>
                                     <p>yizeng19@gsb.columbia.edu</p>
                                     </div>
