@@ -1,6 +1,6 @@
 packages.used=c("dplyr", "plotly", "shiny", "leaflet", "scales", 
                 "lattice", "htmltools", "maps", "data.table", 
-                "dtplyr", "mapproj", "randomForest", "ggplot2", "rpart", "zipcode", "geosphere")
+                "dtplyr", "mapproj", "randomForest", "ggplot2", "rpart", "zipcode", "geosphere", "fmsb")
 
 # check packages that need to be installed.
 packages.needed=setdiff(packages.used, 
@@ -32,9 +32,12 @@ library(fmsb)
 # Import function from scripts in lib
 source("../lib/datatable_func.R")
 
-# Import the data for the third part of general statistics section
+# Import data for the key statistics section
 data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
+
+data1 <- read.csv("../data/data1.csv")
+data2 <- read.csv("../data/data2.csv")
 
 shinyServer(function(input, output){
   #read data
@@ -156,7 +159,8 @@ shinyServer(function(input, output){
   #output$welcome8 <- renderText({"Use an interactive map and table to filter the hospitals based on these key features:"})
   output$welcome8 <- renderUI(HTML("Interact with the map, table, and filters to find your perfet hospital:
                                      <ul><li> State, type, zipcode, distance, cost, and availability of emergency services</li>
-                                         <li> Click on hospitals to see further reports on the hospital by US News</li>
+                                         <li> Click on hospitals to see reports on the hospital by US News</li>
+                                        <li> The ranks of search results are based on an algorithm that takes hospital strength, weakness and cost into account.</li> 
                                          </ul>"))
   
   output$datapage1 <- renderText({"Data Source"})
@@ -176,14 +180,66 @@ shinyServer(function(input, output){
   output$datapage5 <- renderText({"For further details: "})
   
   
-  output$team0<- renderText({"About Team"})
-  output$team1<- renderText({"This app is developed in Spring 2018 by: "})
-  output$team2<- renderText({"-> Guo, Xiaoxiao (email: xg2282@columbia.edu)"})
-  output$team3<- renderText({"-> He, Shan (email: sh3667@columbia.edu)"})
-  output$team4<- renderText({"-> Utomo, Michael (email: mu2251@columbia.edu)"})
-  output$team5<- renderText({"-> Wen, Lan (email: lw2773@columbia.edu)"})
-  output$team6<- renderText({"-> Yao, Jingtian (email: jy2867@columbia.edu)"})
-  output$team7<- renderText({"We are a group of Columbia University M.A. in Statistics students eager to make the world an easier place to live in, and we are taking a tiny step here by developing this app to help you find the best and most fitted hospitals. Good luck!"})
+  output$teampage1 <- renderText({"Meet the Team"})
+  output$teampage2 <- renderUI(HTML("<div class=\"row\">
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"Mengran\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Mengran Xia</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>mx2205@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team2.jpg\" alt=\"\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Siwei Liu</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>sl4224@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team4.jpg\" alt=\"Shuang\" style=\"width:100%\">
+                                    <div class=\"container\">
+                                    <h4>Shuang Lu</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>sl4397@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"row\">
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team1.jpg\" alt=\"Yiyang\" style=\"width:100%\" >
+                                    <div class=\"container\">
+                                    <h4>Joe Yiyang Zheng</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>yizeng19@gsb.columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    
+                                    <div class=\"column\">
+                                    <div class=\"card\">
+                                    <img src=\"team3.jpg\" alt=\"Seungwook\" style=\"width:100%\" height=\"100%\">
+                                    <div class=\"container\">
+                                    <h4>Seungwook Han</h4>
+                                    <p class=\"title\">Columbia University</p>
+                                    <p>sh3264@columbia.edu</p>
+                                    </div>
+                                    </div>
+                                    </div>
+                                    </div>"))
+  
   
   
   
@@ -196,7 +252,7 @@ shinyServer(function(input, output){
     hosnew <- hos %>% 
       group_by(State) %>% 
       summarise(AvgRating = round(mean(as.numeric(Hospital.overall.rating), na.rm = T),2),
-                AvgPayment = round(mean(payment, na.rm = T),2),
+                AvgPaymentScore = round(mean(payment, na.rm = T),2),
                 count = n()) %>% 
       inner_join(region, by = c("State" = "state.abb")) 
     
@@ -204,9 +260,12 @@ shinyServer(function(input, output){
     i = 1
     for(r in unique(hosnew$state.region)){
       df <- filter(hosnew, hosnew$state.region == r)
-      p[i] <- plot_ly(df, x = ~AvgPayment, y = ~AvgRating, type = "scatter", mode = "markers",
+      p[i] <- plot_ly(df, x = ~AvgPaymentScore, y = ~AvgRating, type = "scatter", mode = "markers",
                       color = ~state.region, size = ~count,
-                      text = ~paste(State, "<br>Payment: ", AvgPayment, "<br>Rating: ", AvgRating)) 
+                      text = ~paste(State, "<br>Payment: ", AvgPaymentScore, "<br>Rating: ", AvgRating)) %>%
+                      layout(title = 'Grouped Scatter Plots of Hospital Rating and Payment Situations',
+                             xaxis = list(title = 'Average Payment Score',zeroline = TRUE,range = c(1.3,2.8)),
+                             yaxis = list(title = 'Average Hospital Rating',range = c(2,5)))
       i = i+1
     }
     subplot(p,nrows = 2, shareX = T, shareY = T)
@@ -214,6 +273,38 @@ shinyServer(function(input, output){
   }
   
   )
+  
+  
+  output$heatmaps <- renderPlotly({
+    if(input$MapType == "Number of Hospitals"){
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g, title = 'Heatmap of Number of Hospitals')
+    }else if (input$MapType == "Hospital Quality"){
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data2$Points_A_Cost, text = data2$State, locations = data2$State,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g, title = 'Heatmap of Rating of Hospitals')
+    }else{
+      g <- list(
+        scope = 'usa',
+        projection = list(type = 'albers usa'),
+        lakecolor = toRGB('white')
+      )
+      plot_ly(z = data1$percentage, text = data1$Provider.State, locations = data1$Provider.State,
+              type = 'choropleth', locationmode = 'USA-states') %>%
+        layout(geo = g, title = 'Heatmap of Medicare Covered Percentage of Hospitals')
+    }
+  })
   
   output$measurements <- renderPlot({
     
@@ -234,22 +325,12 @@ shinyServer(function(input, output){
                cglcol="grey", axislabcol="grey",
                pcol=rgb(0.4,0.6,0.8,0.8), pfcol=rgb(0.4,0.6,0.8,0.5), plwd=2,
                caxislabels=c("below","average","above"), calcex = 1,
-               vlcex=1)
+               vlcex=1, title = "Radar Chart of Hospital Performances by State")
     
   }
   
   )
-  output$NHS <- renderPlotly({
-    # specify some map projection/options
-    g <- list(
-      scope = 'usa',
-      projection = list(type = 'albers usa'),
-      lakecolor = toRGB('white')
-    )
-    plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
-            type = 'choropleth', locationmode = 'USA-states') %>%
-      layout(geo = g)
-  })
+
   
 
  })
