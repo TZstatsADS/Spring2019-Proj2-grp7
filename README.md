@@ -14,15 +14,6 @@ Term: Spring 2019
   
 ### **Project summary**: 
 
-<<<<<<< HEAD
-=======
-In a digital era where information is easy to access and more transparent than ever, people can be overwhelmed from the superfulous options and finidng it hard to make an efficient and smart choice. This can be especially when it comes 
-
-As a result, people are paying more attention to improve their quality of life as much as possible. Then, they realize how important keeping healthy is to maximize their happiness. Visiting a hospital is one of the most useful ways to ensure the health of a person. As a consequence, selecting the most appropriate one efficiently and effectively becomes really necessary and avoids unwanted troubles.
-
-If you are thinking of finding hispitals you can go, you can just save your time and look at our app. Our group has created an app helping you to find the best hospitals around you based on your preferences on 7 aspects of hospitals including mortality, safety of care, readmission rate, patient experience, effectiveness of care, timeliness of care and efficient use of medical imaging. With your choice, it will be so easy to find the one fits you the best.
->>>>>>> 1f42cbffa00b55aa53741b05005c4134a7021a54
-
 ##### Find The Hospital that Fits Your Need the Most within Just One Click: https://spring-2018-project2-group8.shinyapps.io/group8/
 
 
