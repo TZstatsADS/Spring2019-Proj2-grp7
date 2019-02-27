@@ -73,7 +73,8 @@ __Yiyang Zeng:__
 
 ### **Reference**:
 1. Basic design was inspired by the project 2 of Spring Semester 2018 Group 8. Author: Xiaxiao Guo, Shan He, Michael Utomo, Lan Wen, and Jingtian Yao.
-2. https://www.w3schools.com/howto/howto_css_team.asp
+2. https://myblue.bluecrossma.com/health-plan/find-doctor-provider-dentist
+3. https://www.w3schools.com/howto/howto_css_team.asp
 
 
 
