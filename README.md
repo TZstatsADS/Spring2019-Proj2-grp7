@@ -20,7 +20,7 @@ TODO: Write project summary or copy from our welcome page
 
 https://seungwookhan.shinyapps.io/project2-group7/
 
-### **App description:**:
+### **App description:**
 #### Welcome
 The welcome page of the app briefly gives an overview of the key features of the app in finding the perfect hospital for you: key statistics and hospital recommendations.
 
