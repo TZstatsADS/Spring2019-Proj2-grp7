@@ -14,7 +14,9 @@ Term: Spring 2019
   
 ### **Project summary**: 
 
-The 21st century is developing and changing rapidly. As a result, people are paying more attention to improve their quality of life as much as possible. Then, they realize how important keeping healthy is to maximize their happiness. Visiting a hospital is one of the most useful ways to ensure the health of a person. As a consequence, selecting the most appropriate one efficiently and effectively becomes really necessary and avoids unwanted troubles.
+In a digital era where information is easy to access and more transparent than ever, people can be overwhelmed from the superfulous options and finidng it hard to make an efficient and smart choice. This can be especially when it comes 
+
+As a result, people are paying more attention to improve their quality of life as much as possible. Then, they realize how important keeping healthy is to maximize their happiness. Visiting a hospital is one of the most useful ways to ensure the health of a person. As a consequence, selecting the most appropriate one efficiently and effectively becomes really necessary and avoids unwanted troubles.
 
 If you are thinking of finding hispitals you can go, you can just save your time and look at our app. Our group has created an app helping you to find the best hospitals around you based on your preferences on 7 aspects of hospitals including mortality, safety of care, readmission rate, patient experience, effectiveness of care, timeliness of care and efficient use of medical imaging. With your choice, it will be so easy to find the one fits you the best.
 
@@ -22,25 +24,27 @@ If you are thinking of finding hispitals you can go, you can just save your time
 
 -- User Manual:
 
---- Step 1: Fill in the information Choose the State you live in or you need to go to. Simultaneously, you can also specify the type of hospital you may go to.
+--- Welcome & About:
 
---- Step 2: Choose how much do your care about on the each of the seven aspects of a hospital.
+--- Key Statistics:
 
---- Step 3: Check the Medicare Assessment table for the basic information of all hospitals, and the most importantly check the Personalized Ranking table to see which are the best ones for you.
+--- Hospital Recommendation: This is the page where users can use our app to search for spcific hospitals. The search criteria on the left enables users to narrow the search results down by location, cost, emergency services or distance. Additionally, if one enters a zipcode, the website locates the user by the zipcode and calculate the distance between all hospitals to the given zipcode. Once given all the search criteria, the website automatically ranks the results to decide which results come on top of the list, based on an algorithem that takes strength, weakness and cost into accounts.  
 
---- Step 4: Click on the map to see the exact location of the hospital and gogogo!
-
-Below is a sneakpeak of our app:
-
-![screenshot](doc/Overlook.jpg)
 
 ### Your Health Cannot Wait! Find The HosAllpital And Keep Your Smile Forever Now!
 
 ### **Contribution statement**: 
 
-All team members remain active and participate throughout the tenure of the project. With the final goal of creating an ea The project was splitted into two smaller tasks 
+-- Han, Seungwook:
 
-allAll team members participated in group discussions and designed the content of this App. Lan Wen and Jingtian Yao respectively found the dataset of hospital general information and payment dataset. Xiaoxiao Guo, Jingtian Yao and Lan Wen merged the data and cleaned the data in the Excel. Shan He wrote the filter and table shiny UI and Server part. Lan Wen and Xiaoxiao Guo wrote the map Shiny UI and Server part. Jingtian Yao wrote the score function designed by Xiaoxiao Guo and the ranking UI and Server part. Michael Utomo built the Random Forest model and the code for the summary statistics and EDA. Xiaoxiao Guo combined the summary statistics into shiny UI and Server part. Shan He, Lan Wen, Michael Utomo, and Jingtian Yao edited the Introduction page of the app.  Shan He summarized the folder and deployed the app. In addition, all team members revised the Shiny UI framework. Michael Utomo also helped resolve some of the issues that other team members have during the meetings, like issues on the Google Maps and issues of the ranking, and was responsible for the welcome logo. All team members contributed to the GitHub repository. All team members approve our work presented in our GitHub repository including this contribution statement.
+-- Liu, Siwei:
+
+-- Lu, Shuang:
+
+-- Xia, Mengran:
+
+-- Zeng, Yiyang: Yiyang has made some changes to the hospital recommendation/search page. He mainly reorganized the two data table into one that contains more information than before, and he changed the logic of ranking the search results. He also wrote the function to let user enter a zipcode and uses the zipcode to get the user's location and distance from hospitals. Additionally, he contributed to the key statistics page and the read me file.
+
 
 ### **Reference**:
 1. Some design ideas were inspired by the project 2 of Spring Semester 2018 Group 8. Author: Tongyue Liu, Yue Jin, Yijia Pan, Jia Hui Tan and Qingyuan Zhang. Columbia University, 2017.
