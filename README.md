@@ -1,4 +1,4 @@
-﻿# Project 2: Open Data App - an RShiny app development project
+# Project 2: Open Data App - an RShiny app development project
 
 ## Project Title: Medic -- Find your perfect hospital
 Term: Spring 2019
@@ -53,7 +53,11 @@ __Siwei Liu:__
 * Summarized the Key Statistics part in the readme file
 * Brainstormed and proposed ideas throughout the whole process of app development
 (the layout of the UI, using the heatmap, etc.)
+
 __Shuang Lu:__
+*Created the interactive radar chart of 7 performance measurements under the 'Key Statistics' section.
+*Created the interactive scatter plot of Hospital Rating VS Payment under the 'Key Statistics' section.
+*Implemented the selectInput functionality of the 'Hostipal Heatmaps' for the page to display the selected type of heatmap under the 'Key Statistics' section.
 
 __Mengran Xia:__
 
