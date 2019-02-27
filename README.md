@@ -1,9 +1,9 @@
 ﻿# Project 2: Open Data App - an RShiny app development project
 
-## Project Title: Hospital for You
+## Project Title: Medic -- Find your perfect hospital
 Term: Spring 2019
 
-### **Team Introduction #8**
+### **Group 7**
 + Team Members:
 	+ team member: Han, Seungwook (email: sh3264@columbia.edu)
 	+ team member: Liu, Siwei (email:sl4224@columbia.edu)
@@ -14,9 +14,6 @@ Term: Spring 2019
   
 ### **Project summary**: 
 
-The 21st century is developing and changing rapidly. As a result, people are paying more attention to improve their quality of life as much as possible. Then, they realize how important keeping healthy is to maximize their happiness. Visiting a hospital is one of the most useful ways to ensure the health of a person. As a consequence, selecting the most appropriate one efficiently and effectively becomes really necessary and avoids unwanted troubles.
-
-If you are thinking of finding hispitals you can go, you can just save your time and look at our app. Our group has created an app helping you to find the best hospitals around you based on your preferences on 7 aspects of hospitals including mortality, safety of care, readmission rate, patient experience, effectiveness of care, timeliness of care and efficient use of medical imaging. With your choice, it will be so easy to find the one fits you the best.
 
 ##### Find The Hospital that Fits Your Need the Most within Just One Click: https://spring-2018-project2-group8.shinyapps.io/group8/
 
@@ -34,26 +31,32 @@ Below is a sneakpeak of our app:
 
 ![screenshot](doc/Overlook.jpg)
 
-### Your Health Cannot Wait! Find The HosAllpital And Keep Your Smile Forever Now!
+### **App description:** ###
+#### Welcome ####
+The welcome page of the app briefly gives an overview of the key features of the app in finding the perfect hospital for you: key statistics and hospital recommendations.
+
+#### About ####
+##### About Team #####
+This page introduces team members of Group 7 along with their photos and contact information.
+
+##### Data #####
+This page lists the two data sources from which the key insights and hospital recommendations are based on. Moreover, it defines the data columns or keywords for clarity into what each indicates.
 
 ### **Contribution statement**: 
 
-All team members remain active and participate throughout the tenure of the project. With the final goal of creating an ea The project was splitted into two smaller tasks 
+All team members were active and participated throughout the different stages of the project.
 
-allAll team members participated in group discussions and designed the content of this App. Lan Wen and Jingtian Yao respectively found the dataset of hospital general information and payment dataset. Xiaoxiao Guo, Jingtian Yao and Lan Wen merged the data and cleaned the data in the Excel. Shan He wrote the filter and table shiny UI and Server part. Lan Wen and Xiaoxiao Guo wrote the map Shiny UI and Server part. Jingtian Yao wrote the score function designed by Xiaoxiao Guo and the ranking UI and Server part. Michael Utomo built the Random Forest model and the code for the summary statistics and EDA. Xiaoxiao Guo combined the summary statistics into shiny UI and Server part. Shan He, Lan Wen, Michael Utomo, and Jingtian Yao edited the Introduction page of the app.  Shan He summarized the folder and deployed the app. In addition, all team members revised the Shiny UI framework. Michael Utomo also helped resolve some of the issues that other team members have during the meetings, like issues on the Google Maps and issues of the ranking, and was responsible for the welcome logo. All team members contributed to the GitHub repository. All team members approve our work presented in our GitHub repository including this contribution statement.
+__Seungwook Han__
+* Brainstormed and proposed ideas for improvement in the features of the app (changing the general UI for the welcome page, combining two data tables into one, and changing the filters for more appropriate ones that are relevant in searching for hospitals)
+* Designed and coded the 'Welcome' page
+* Designed the coded the 'Meet the Team' and 'Data' pages under 'About'
+* Re-structured the layout of the datatable and map in the 'Hospital Recommendation' page
+* Embedded hyperlinks into the hospital name column of the datatable so that it links to the US News hospital search with the respective name
+
 
 ### **Reference**:
-1. Some design ideas were inspired by the project 2 of Spring Semester 2018 Group 8. Author: Tongyue Liu, Yue Jin, Yijia Pan, Jia Hui Tan and Qingyuan Zhang. Columbia University, 2017.
-2. Tutorial 2.Rmd, Prof. Ying Liu, Chengliang Tang
-3. Shiny_tutorial.Rmd, Chengliang Tang
-4. https://github.com/TZstatsADS/Fall2016-Proj2-grp14
-5. https://www.researchgate.net/profile/Andy_Liaw/publication/228451484_Classification_and_Regression_by_RandomForest/links/53fb24cc0cf20a45497047ab/Classification-and-Regression-by-RandomForest.pdf
-6. https://discuss.analyticsvidhya.com/t/decision-tree-gini-impurity-purity/37650
-7. https://stackoverflow.com/questions/22332911/plot-frequency-table-in-r
-8. https://www.kdnuggets.com/2017/10/random-forests-explained.html
-9. https://www.datasciencecentral.com/profiles/blogs/random-forests-explained-intuitively
-10. https://www.analyticsvidhya.com/blog/2014/06/introduction-random-forest-simplified/
-11. https://www.udemy.com/data-science-and-machine-learning-bootcamp-with-r/learn/v4/t/lecture/5412704?start=0
+1. Basic design was inspired by the project 2 of Spring Semester 2018 Group 8. Author: Xiaxiao Guo, Shan He, Michael Utomo, Lan Wen, and Jingtian Yao.
+2. https://www.w3schools.com/howto/howto_css_team.asp
 
 
 

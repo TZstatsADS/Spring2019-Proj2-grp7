@@ -29,7 +29,7 @@ dashboardPage(
         "About",
         icon = icon("file-text-o"),
         menuSubItem(
-          "About Team",
+          "Meet the Team",
           tabName = "AboutTeam",
           icon = icon("angle-right")
         ),
