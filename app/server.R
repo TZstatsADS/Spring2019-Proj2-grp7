@@ -36,8 +36,8 @@ source("../lib/datatable_func.R")
 data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
 
-data1 <- read.csv("../data/data1.csv")
-data2 <- read.csv("../data/data2.csv")
+data1 <- read.csv("../output/data1.csv")
+data2 <- read.csv("../output/data2.csv")
 
 shinyServer(function(input, output){
   #read data
