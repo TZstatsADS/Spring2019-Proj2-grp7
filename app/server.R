@@ -285,7 +285,7 @@ shinyServer(function(input, output){
       plot_ly(z = data_general3$hospital.number, text = data_general3$state.abb, locations = data_general3$state.abb,
               type = 'choropleth', locationmode = 'USA-states') %>%
         layout(geo = g, title = 'Heatmap of Number of Hospitals')
-    }else if (input$MapType == "Hospital Rating"){
+    }else if (input$MapType == "Hospital Quality"){
       g <- list(
         scope = 'usa',
         projection = list(type = 'albers usa'),
@@ -293,7 +293,7 @@ shinyServer(function(input, output){
       )
       plot_ly(z = data2$Points_A_Cost, text = data2$State, locations = data2$State,
               type = 'choropleth', locationmode = 'USA-states') %>%
-        layout(geo = g, title = 'Heatmap of Number of Hospitals')
+        layout(geo = g, title = 'Heatmap of Rating of Hospitals')
     }else{
       g <- list(
         scope = 'usa',
