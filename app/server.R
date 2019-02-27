@@ -186,7 +186,7 @@ shinyServer(function(input, output){
   output$teampage2 <- renderUI(HTML("<div class=\"row\">
                                     <div class=\"column\">
                                     <div class=\"card\">
-                                    <img src=\"team1.jpg\" alt=\"Mengran\" style=\"width:100%\">
+                                    <img src=\"team5.jpg\" alt=\"Mengran\" style=\"width:100%\">
                                     <div class=\"container\">
                                     <h4>Mengran Xia</h4>
                                     <p class=\"title\">Columbia University</p>
