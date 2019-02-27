@@ -12,10 +12,13 @@ Term: Spring 2019
 	+ team member: Zeng, Yiyang (email:yizeng19@gsb.columbia.edu)
   + presenter: Han, Seungwook
 
-### **Project summary**:
+### **Project Summary** ###:
 
-##### Find The Hospital that Fits Your Need the Most within Just One Click: https://spring-2018-project2-group8.shinyapps.io/group8/
+TODO: Write project summary or copy from our welcome page
 
+### **Project Link**###
+
+https://seungwookhan.shinyapps.io/project2-group7/
 
 ### **App description:** ###
 #### Welcome ####
