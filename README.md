@@ -55,9 +55,9 @@ __Siwei Liu:__
 (the layout of the UI, using the heatmap, etc.)
 
 __Shuang Lu:__
-*Created the interactive radar chart of 7 performance measurements under the 'Key Statistics' section.
-*Created the interactive scatter plot of Hospital Rating VS Payment under the 'Key Statistics' section.
-*Implemented the selectInput functionality of the 'Hostipal Heatmaps' for the page to display the selected type of heatmap under the 'Key Statistics' section.
+* Created the interactive radar chart of 7 performance measurements under the 'Key Statistics' section.
+* Created the interactive scatter plot of Hospital Rating VS Payment under the 'Key Statistics' section.
+* Implemented the selectInput functionality of the 'Hostipal Heatmaps' for the page to display the selected type of heatmap under the 'Key Statistics' section.
 
 __Mengran Xia:__
 
