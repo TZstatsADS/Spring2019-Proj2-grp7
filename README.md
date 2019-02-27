@@ -52,6 +52,7 @@ __Seungwook Han__
 * Designed the coded the 'Meet the Team' and 'Data' pages under 'About'
 * Re-structured the layout of the datatable and map in the 'Hospital Recommendation' page
 * Embedded hyperlinks into the hospital name column of the datatable so that it links to the US News hospital search with the respective name
+* Partook in writing the readme files
 
 
 ### **Reference**:
