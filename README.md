@@ -1,4 +1,4 @@
-# Project 2: Open Data App - an RShiny app development project
+﻿# Project 2: Open Data App - an RShiny app development project
 
 ## Project Title: Hospital for You
 Term: Spring 2019
@@ -9,7 +9,7 @@ Term: Spring 2019
 	+ team member: Liu, Siwei (email:sl4224@columbia.edu)
 	+ team member: Lu, Shuang (email:sl4397@columbia.edu)
 	+ team member: Xia, Mengran (email:mx2205@columbia.edu)
-	+ team member: Zeng, Yiyang (email:yz3403@gsb.columbia.edu)
+	+ team member: Zeng, Yiyang (email:yizeng19@gsb.columbia.edu)
   + presenter: Han, Seungwook
   
 ### **Project summary**: 

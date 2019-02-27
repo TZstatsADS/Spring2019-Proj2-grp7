@@ -108,6 +108,16 @@ dashboardPage(
                 tabBox(
                   width = 12,
                   
+                  tabPanel(title = "Hospital Heatmaps",
+                           fluidRow(
+                             column(width = 3,
+                                    br(),
+                                    selectInput("MapType", label = "Type of Map", selected = "Number of Hospitals", 
+                                                choices = c("Number of Hospitals", "Hospital Quality",
+                                                            "Medicare Coverage Percentage")),
+                                    submitButton("Submit", width = "70%")),
+                             column(width = 9,plotlyOutput("heatmaps", height = 570)))),
+                  
                   tabPanel(title = "7 Measurements",
                            fluidRow(
                              column(width = 3,
@@ -116,11 +126,8 @@ dashboardPage(
                                     choices = as.character(unique(hos$State))[c(0:51,53)]),
                                     submitButton("Submit", width = "70%")),
                              column(width = 9,plotOutput("measurements", height = 570)))),
-                  tabPanel(title = "Rating VS Payment",width = 12,plotlyOutput("Rating.Payment", height = 570)),
                   
-                  tabPanel(title = "Heatmap of Hospitals\n", plotlyOutput("NHS", height = 570))
-                  
-
+                  tabPanel(title = "Rating VS Payment",width = 12,plotlyOutput("Rating.Payment", height = 570))
                 )
               )),
       
