@@ -14,7 +14,7 @@ Term: Spring 2019
 
 ### **Project Summary**:
 
-In a digital era where information can be easily accessed and become more transparent than ever, people may struggle from the overwhelming data and finind it hard and inefficient to navigate through all the avilable choices. This is especially true in terms of healthcare. The United States has one of the most complicated and expensive healthcare systems in the world, and that's why we developed Medic to help you find the hospital that fits your need most within a few clicks.
+In a digital era where information can be easily accessed and become more transparent than ever, people may struggle from the overwhelming data and find it hard and inefficient to navigate through all the avilable choices. This is especially true in terms of healthcare. The United States has one of the most complicated and expensive healthcare systems in the world, and that's why we developed Medic to help you find the hospital that fits your need most within a few clicks.
 
 We used 7 criteria for Hospital assessments: Mortality, Safety, Readmission, Patient Experience, Effectiveness, Timeliness, and Medical Image Effectiveness. Users can simply input their geographical information and the ranks of hospitals will be provided based on an algorithm that takes the above hospital strength, weakness and cost into account.
 
