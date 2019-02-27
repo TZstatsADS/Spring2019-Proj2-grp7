@@ -11,8 +11,8 @@ Term: Spring 2019
 	+ team member: Xia, Mengran (email:mx2205@columbia.edu)
 	+ team member: Zeng, Yiyang (email:yizeng19@gsb.columbia.edu)
   + presenter: Han, Seungwook
-  
-### **Project summary**: 
+
+### **Project summary**:
 
 ##### Find The Hospital that Fits Your Need the Most within Just One Click: https://spring-2018-project2-group8.shinyapps.io/group8/
 
@@ -33,7 +33,7 @@ This page lists the two data sources from which the key insights and hospital re
 #### Hospital Recommendation ####
 This is the page where users can use our app to search for spcific hospitals. The search criteria on the left enables users to narrow the search results down by location, cost, emergency services or distance. Additionally, if one enters a zipcode, the website locates the user by the zipcode and calculate the distance between all hospitals to the given zipcode. Once given all the search criteria, the website automatically ranks the results to decide which results come on top of the list, based on an algorithem that takes strength, weakness and cost into accounts.  
 
-### **Contribution statement**: 
+### **Contribution statement**:
 
 All team members were active and participated throughout the different stages of the project.
 
@@ -46,12 +46,17 @@ __Seungwook Han:__
 * Partook in writing the readme files
 
 __Siwei Liu:__
-
+* Cleaned the main hospital csv file and calculated hospital number grouped by state using Python
+* Created the interactive heat map in the key statistics section
+* Reorganized the output file and added the main output pictures of our Shiny App
+* Summarized the Key Statistics part in the readme file
+* Brainstormed and proposed ideas throughout the whole process of app development
+(the layout of the UI, using the heatmap, etc.)
 __Shuang Lu:__
 
 __Mengran Xia:__
 
-__Yiyang Zeng:__ 
+__Yiyang Zeng:__
 * Made some changes to the hospital recommendation/search page
 * Mainly reorganized the two data table into one that contains more information than before and changed the logic of ranking the search results
 * Wrote the function to let user enter a zipcode and uses the zipcode to get the user's location and distance from hospitals
@@ -74,6 +79,5 @@ proj/
 ├── doc/
 └── output/
 ```
-  
-Please see each subfolder for a README file.
 
+Please see each subfolder for a README file.
