@@ -221,7 +221,7 @@ shinyServer(function(input, output){
                                     <div class=\"card\">
                                     <img src=\"team1.jpg\" alt=\"Yiyang\" style=\"width:100%\" >
                                     <div class=\"container\">
-                                    <h4>Joe Yiyang Zheng</h4>
+                                    <h4>Joe Yiyang Zeng</h4>
                                     <p class=\"title\">Columbia University</p>
                                     <p>yizeng19@gsb.columbia.edu</p>
                                     </div>
