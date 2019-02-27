@@ -30,14 +30,14 @@ library(geosphere)
 library(fmsb)
 
 # Import function from scripts in lib
-source("../lib/datatable_func.R")
+source("./datatable_func.R")
 
 # Import data for the key statistics section
-data_general3 = read.csv("../output/Hospital_count_by_state.csv", header = FALSE)
+data_general3 = read.csv("./Hospital_count_by_state.csv", header = FALSE)
 colnames(data_general3) = c("state.abb","hospital.number")
 
-data1 <- read.csv("../data/data1.csv")
-data2 <- read.csv("../data/data2.csv")
+data1 <- read.csv("./data1.csv")
+data2 <- read.csv("./data2.csv")
 
 shinyServer(function(input, output){
   #read data
